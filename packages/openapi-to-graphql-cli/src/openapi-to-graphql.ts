@@ -7,10 +7,10 @@ import * as path from 'path'
 import * as request from 'request'
 import * as fs from 'fs'
 import * as yaml from 'js-yaml'
-import { printSchema } from 'graphql'
+import { printSchema } from '../../openapi-to-graphql/node_modules/graphql'
 import { Command } from 'commander'
 
-import { createGraphQLSchema } from 'openapi-to-graphql'
+import { createGraphQLSchema } from '../../openapi-to-graphql/src/index'
 import { Oas2 } from 'openapi-to-graphql/lib/types/oas2'
 import { Oas3 } from 'openapi-to-graphql/lib/types/oas3'
 import { Options } from 'openapi-to-graphql/lib/types/options'
@@ -256,7 +256,7 @@ function startGraphQLServer<TSource, TContext, TArgs>(
   port: number
 ): void {
   // Create GraphQL interface
-  createGraphQLSchema(oas, options)
+  createGraphQLSchema(oas, options as any)
     .then(({ schema, report }) => {
       console.log(JSON.stringify(report, null, 2))
 

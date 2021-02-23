@@ -152,15 +152,16 @@ export function getValidOAS3(spec: Oas2 | Oas3): Promise<Oas3> {
     ) {
       preprocessingLog(`Received OpenAPI Specification - going to validate...`)
 
-      OASValidator.validate(spec, {})
-        .then(() => resolve(spec as Oas3))
-        .catch((error) =>
-          reject(
-            `Could not validate OpenAPI Specification '${
-              (spec as Oas3).info.title
-            }'. ${error.message}`
-          )
-        )
+      // OASValidator.validate(spec, {})
+      //   .then(() => resolve(spec as Oas3))
+      //   .catch((error) =>
+      //     reject(
+      //       `Could not validate OpenAPI Specification '${
+      //         (spec as Oas3).info.title
+      //       }'. ${error.message}`
+      //     )
+      //   )
+      resolve(spec as Oas3)
     } else {
       reject(`Invalid specification provided`)
     }
